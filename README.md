@@ -1,2 +1,2 @@
 # 201834890ZhangZhao
-Homework of Date Mining
+Homework of Data Mining
