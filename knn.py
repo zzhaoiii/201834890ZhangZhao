@@ -1,9 +1,10 @@
 import vsm
 import math
+import pandas as pd
 
 
 # tf*idf 产生权重
-def TF_IDF(documents, dictionary, tt):
+def TF_IDF(documents, dictionary):
     print('tf-idf')
     vectors = []
     i = 0
@@ -28,13 +29,13 @@ def TF_IDF(documents, dictionary, tt):
 
 if __name__ == '__main__':
     documents = []
-    lables = []
+    labels = []
     dictionary = []
     # 输入数据
-    vsm.input_data(documents, lables)
-    tt = documents[:]
+    vsm.input_data(documents, labels)
     # 预处理
     vsm.preprocessing(documents, dictionary)
     # tf-idf 获取vector space
-    vectors = TF_IDF(documents, dictionary, tt)
+    vectors = TF_IDF(documents, dictionary)
     print(vectors)
+    pd.DataFrame(vectors).to_csv('data/out/vsm-ft-idf.csv', sep=" ", header=None, index=None)
