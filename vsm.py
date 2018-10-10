@@ -30,8 +30,6 @@ def input_data(documents, lables):
         if i > 10:
             break
 
-    # print(documents)
-
 
 # 预处理数据集
 def preprocessing(documents, dictionary):
