@@ -15,20 +15,18 @@ base_path = 'data/20news-18828'
 # nltk.download('stopwords')
 
 # 输入数据集
-def input_data(documents, lables):
+def input_data(documents, labels):
     print('Inputting')
-    i = 0
     for folder in os.listdir(base_path):
         path = os.path.join(base_path, folder)
         for filename in os.listdir(path):
-            lables.append(filename)
+            labels.append(filename)
             filepath = os.path.join(path, filename)
             with open(filepath, encoding='latin-1') as file:
                 document = file.read()
                 documents.append(document)
-            i += 1
-        if i > 10:
-            break
+        #     break
+        # break
 
 
 # 预处理数据集
@@ -44,6 +42,8 @@ def preprocessing(documents, dictionary):
         document = documents[i]
         # Tokenization
         tokens = word_tokenize(document)
+        # 过滤掉频率小于3的token
+        tokens = list(filter(lambda token: str(document).count(token) >= 2, tokens))
         # 将相应文本转换成tokens
         documents[i] = []
         for token in tokens:
@@ -56,11 +56,13 @@ def preprocessing(documents, dictionary):
                 documents[i].append(token)
                 if token not in stop_words and token not in dictionary:
                     dictionary.append(token)
+
+        print(len(dictionary))
         print(i)
 
 
 # 生成vector space
-def csm(documents, lables, dictionary):
+def vsm(documents, labels, dictionary):
     print('vector space')
     vectors = []
     for i in range(len(documents)):
@@ -76,8 +78,8 @@ def csm(documents, lables, dictionary):
     # 将字典加在第一行
     vector_space = np.vstack((dictionary, vectors))
     # 将lable加在第一列
-    lables.insert(0, "Terms")
-    vector_space = np.hstack((np.array(lables).reshape(-1, 1), vector_space))
+    labels.insert(0, "Terms")
+    vector_space = np.hstack((np.array(labels).reshape(-1, 1), vector_space))
 
     # 保存
     print('save')
@@ -86,11 +88,11 @@ def csm(documents, lables, dictionary):
 
 if __name__ == '__main__':
     documents = []
-    lables = []
+    labels = []
     dictionary = []
     # 输入数据
-    input_data(documents, lables)
+    input_data(documents, labels)
     # 预处理
     preprocessing(documents, dictionary)
     # 生成vector space
-    csm(documents, lables, dictionary)
+    vsm(documents, labels, dictionary)
