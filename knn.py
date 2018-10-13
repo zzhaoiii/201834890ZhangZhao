@@ -1,10 +1,11 @@
 import vsm
 import math
 import pandas as pd
+import nltk
 
 
 # tf*idf 产生权重
-def TF_IDF(documents, dictionary):
+def TF_IDF1(documents, dictionary):
     print('tf-idf')
     vectors = []
     i = 0
@@ -27,6 +28,23 @@ def TF_IDF(documents, dictionary):
     return vectors
 
 
+# 使用类库tf*idf 产生权重
+def TF_IDF2(documents, dictionary):
+    print('tf-idf')
+    vectors = []
+    i = 0
+    tc = nltk.TextCollection([str(document) for document in documents])
+    for document in documents:
+        vector = []
+        for item in dictionary:
+            weight = tc.tf_idf(item, str(document))
+            vector.append(weight)
+        vectors.append(vector)
+        print(i)
+        i += 1
+    return vectors
+
+
 if __name__ == '__main__':
     documents = []
     labels = []
@@ -34,8 +52,8 @@ if __name__ == '__main__':
     # 输入数据
     vsm.input_data(documents, labels)
     # 预处理
-    vsm.preprocessing(documents, dictionary)
+    vsm.f_dictionary(documents, dictionary)
     # tf-idf 获取vector space
-    vectors = TF_IDF(documents, dictionary)
-    print(vectors)
+    vectors = TF_IDF2(documents, dictionary)
+    # print(vectors)
     pd.DataFrame(vectors).to_csv('data/out/vsm-ft-idf.csv', sep=" ", header=None, index=None)
