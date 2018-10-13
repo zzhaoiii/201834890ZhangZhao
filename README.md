@@ -10,4 +10,10 @@ update 1：
 2018-10-11
 update 2：
 1. 更改词典生成规则，过滤doc中词频4以下token
-2. 跑出01型vector space，但太大，无法上传git上
+2. 跑出01型vector space，但太大（500M），无法上传git上
+
+2018-10-13
+update 3：
+1. 使用类库计算tf-idf，加快计算速度
+2. 跑出tf-idf的vector space（1.4G）
+3. 规范vsm.py中的代码
