@@ -6,33 +6,14 @@ import numpy as np
 import pandas as pd
 import re
 import string
-import gc
+from nltk.stem import WordNetLemmatizer
 
 base_path = 'data/20news-18828'
-
 
 # import nltk
 # nltk.download('punkt')
 # nltk.download('stopwords')
-
-# 输入数据集
-def input_data(documents, labels):
-    print('Inputting')
-    i = 0
-    for folder in os.listdir(base_path):
-        path = os.path.join(base_path, folder)
-        for filename in os.listdir(path):
-            labels.append(filename)
-            filepath = os.path.join(path, filename)
-            with open(filepath, encoding='latin-1') as file:
-                document = file.read()
-                documents.append(document)
-            #     break
-            # break
-            i += 1
-        if i > 2:
-            break
-
+# nltk.download('wordnet')
 
 # 预处理
 def preprocessing(document):
@@ -40,7 +21,9 @@ def preprocessing(document):
     # 去特殊字符
     regex_punctuation = re.compile('[%s]' % re.escape(string.punctuation))
     # 生成波特词干算法对象
-    ps = PorterStemmer()
+    # ps = PorterStemmer()
+    # 加载Stemming类库
+    lemmatizer = WordNetLemmatizer()
     # Stopword
     stop_words = set(stopwords.words("english"))
     # Tokenization
@@ -50,7 +33,8 @@ def preprocessing(document):
         token = regex_punctuation.sub("", token)
         token = token.lower()
         # Stemming
-        token = ps.stem(token)
+        # token = ps.stem(token)
+        token = lemmatizer.lemmatize(token)
         if token and token not in stop_words:
             back.append(token)
     # 过滤词频小于2的token
@@ -59,24 +43,62 @@ def preprocessing(document):
     return back
 
 
+# 输入数据集并预处理
+def input_data(flush=False):
+    print('Inputting')
+    documents = []
+    labels = []
+    # 若documents,labels已存在，只读取
+    if not os.path.exists('data/out/documents.csv') or flush:
+        i = 0
+        for folder in os.listdir(base_path):
+            path = os.path.join(base_path, folder)
+            for filename in os.listdir(path):
+                labels.append(folder)
+                filepath = os.path.join(path, filename)
+                with open(filepath, encoding='latin-1') as file:
+                    document = file.read()
+                    documents.append(preprocessing(document))
+                #     break
+                # break
+                i += 1
+                print(i)
+            # if i > 2:
+            #     break
+        docs = [str(doc) for doc in documents]
+        pd.DataFrame(docs).to_csv('data/out/documents.csv', sep=" ", header=None, index=None)
+        pd.DataFrame(labels).to_csv('data/out/labels.csv', sep=" ", header=None, index=None)
+    else:
+        labels = np.array(pd.read_csv('data/out/labels.csv', sep=" ", header=None))
+        documents = np.array(pd.read_csv('data/out/documents.csv', sep=" ", header=None))
+        documents = [doc[0].replace(' ', '').replace('\'', '').replace('[', '').replace(']', '').split(',') for doc in
+                     documents]
+    return documents, labels
+
+
 # 生成词典
-def f_dictionary(documents, dictionary):
+def f_dictionary(documents):
+    dictionary = []
     print('Dictionary')
-    for i in range(len(documents)):
-        document = documents[i]
-        document = preprocessing(document)
-        documents[i] = document
-        for token in document:
-            if token not in dictionary:
-                dictionary.append(token)
-        print(i)
-    print(len(dictionary))
+    # 若词典已存在，只读取
+    if not os.path.exists('data/out/dictionary.csv'):
+        for i in range(len(documents)):
+            document = documents[i]
+            for token in document:
+                if token and token not in dictionary:
+                    dictionary.append(token)
+            print(i)
+        pd.DataFrame(dictionary).to_csv('data/out/dictionary.csv', sep=" ", header=None, index=None)
+    else:
+        dictionary = np.array(pd.read_csv('data/out/dictionary.csv', sep=" ", header=None)).reshape(1, -1)[0]
+    return dictionary
 
 
 # 生成vector space
-def vsm(documents, labels, dictionary):
+def vsm(documents, dictionary):
     print('vector space')
     vectors = []
+    i = 0
     for document in documents:
         vector = []
         for item in dictionary:
@@ -85,29 +107,18 @@ def vsm(documents, labels, dictionary):
             else:
                 vector.append('0')
         vectors.append(vector)
-    vectors = np.array(vectors)
-    # 将字典加在第一行
-    vector_space = np.vstack((dictionary, vectors))
-    del dictionary, vectors
-    gc.collect()
-    # 将lable加在第一列
-    labels.insert(0, "Terms")
-    vector_space = np.hstack((np.array(labels).reshape(-1, 1), vector_space))
-    del labels
-    gc.collect()
+        i += 1
+        print(i)
 
     # 保存
     print('save')
-    pd.DataFrame(vector_space).to_csv('data/out/vsm-0.csv', sep=" ", header=None, index=None)
+    pd.DataFrame(vectors).to_csv('data/out/vsm-01.csv', sep=",", header=None, index=None)
 
 
 if __name__ == '__main__':
-    documents = []
-    labels = []
-    dictionary = []
     # 输入数据
-    input_data(documents, labels)
-    # 预处理
-    f_dictionary(documents, dictionary)
+    documents, labels = input_data()
+    # 生成词典
+    dictionary = f_dictionary(documents)
     # 生成vector space
-    vsm(documents, labels, dictionary)
+    vsm(documents, dictionary)
