@@ -2,8 +2,8 @@
 Homework of Data Mining
 
 ## Final product description 
-> 1. 预处理过程：token->normalization（去特殊字符、小写、判断是否英语单词）->Stemming->Stopword
-> 2. 构造词典：去除频率4以下token
+> 1. 预处理过程：划分train set、test set->token->normalization（去特殊字符、小写、判断是否英语单词）->Stemming->Stopword
+> 2. 构造词典：去除频率4以下token。最终词典大小：18708
 > 3. 实现01型与tf-idf权重型space vector
 > 4. 实现通过计数法、1/d\*d 权重法进行KNN分类
 > 5. KNN分类过程中保存的中间文件：
@@ -11,7 +11,7 @@ Homework of Data Mining
 >  * 预测结果 : data/knn-out/prediction.csv
 >  * 训练集预处理结果 : data/knn-out/train_X.csv ;  data/knn-out/train_Y.csv
 >  * 测试集预处理结果 : data/knn-out/test_X.csv ;  data/knn-out/test_Y.csv
-> 6. 准确率：   
+> 6. 测试集准确率：   
 
  |   实现        |  准确率  |   K值  |
  |   :----:      | :----:  | :----: |
