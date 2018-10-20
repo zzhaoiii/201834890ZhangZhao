@@ -2,15 +2,15 @@
 Homework of Data Mining
 
 ## Final product description 
-1. 预处理过程：token->normalization（去特殊字符、小写、判断是否英语单词）->Stemming->Stopword
-2. 构造词典：去除频率4以下token
-3. 实现01型与tf-idf权重型space vector
-4. 实现通过计数法、1/d\*d 权重法进行KNN分类
-5. 准确率： 
-  01型+计数法：0.729 K=30
-  01型+权重法：0.753 K=42
-  tf-idf+计数法：0.733 K=40
-  tf-idf+权重法：0.742 K=40
+> 1. 预处理过程：token->normalization（去特殊字符、小写、判断是否英语单词）->Stemming->Stopword
+> 2. 构造词典：去除频率4以下token
+> 3. 实现01型与tf-idf权重型space vector
+> 4. 实现通过计数法、1/d\*d 权重法进行KNN分类
+> 5. 准确率： 
+  * 01型+计数法：0.729 K=30
+  * 01型+权重法：0.753 K=42
+  * tf-idf+计数法：0.733 K=40
+  * tf-idf+权重法：0.742 K=40
 
 
 ### 2018-10-20 update 5：
