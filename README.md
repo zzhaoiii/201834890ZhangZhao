@@ -6,7 +6,7 @@ Homework of Data Mining
 > 2. 构造词典：去除频率4以下token
 > 3. 实现01型与tf-idf权重型space vector
 > 4. 实现通过计数法、1/d\*d 权重法进行KNN分类
-> 5. KNN分类过程中：
+> 5. KNN分类过程中保存的中间文件：
 >  * 词典 : data/knn-out/dictionary.csv
 >  * 预测结果 : data/knn-out/prediction.csv
 >  * 训练集预处理结果 : data/knn-out/train_X.csv ;  data/knn-out/train_Y.csv
@@ -19,8 +19,6 @@ Homework of Data Mining
  | 01型+权重法    |  0.753  |   42   |
  | tf-idf+计数法  |  0.733  |   40   |
  | tf-idf+权重法  |  0.742  |   40   | 
-
-</div>
 
 ----------
 
