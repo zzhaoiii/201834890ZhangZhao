@@ -1,7 +1,7 @@
 # 201834890ZhangZhao
 Homework of Data Mining
 
-## Final product description 
+### Final product description 
 > 1. 预处理过程：token->normalization（去特殊字符、小写、判断是否英语单词）->Stemming->Stopword
 > 2. 构造词典：去除频率4以下token
 > 3. 实现01型与tf-idf权重型space vector
@@ -11,6 +11,12 @@ Homework of Data Mining
 >  * 01型+权重法：0.753 K=42
 >  * tf-idf+计数法：0.733 K=40
 >  * tf-idf+权重法：0.742 K=40
+|   实现        |  准确率  |   K值  |
+|   :----:      | :----:  | :----: |
+| 01型+计数法    |  0.729  |   30   |
+| 01型+权重法    |  0.753  |   42   |
+| tf-idf+计数法  |  0.733  |   40   |
+| tf-idf+权重法  |  0.742  |   40   |
 
 ----------
 
