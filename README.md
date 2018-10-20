@@ -1,7 +1,7 @@
 # 201834890ZhangZhao
 Homework of Data Mining
 
-### Final product description 
+## Final product description 
 > 1. 预处理过程：token->normalization（去特殊字符、小写、判断是否英语单词）->Stemming->Stopword
 > 2. 构造词典：去除频率4以下token
 > 3. 实现01型与tf-idf权重型space vector
