@@ -8,7 +8,7 @@ Homework of Data Mining
 > 4. 实现通过计数法、1/d\*d 权重法进行KNN分类
 > 5. 准确率： 
 
-<center>
+<div align=center> 
   
 |   实现        |  准确率  |   K值  |
 |   :----:      | :----:  | :----: |
@@ -17,7 +17,7 @@ Homework of Data Mining
 | tf-idf+计数法  |  0.733  |   40   |
 | tf-idf+权重法  |  0.742  |   40   | 
 
-</center>
+</div>
 
 ----------
 
