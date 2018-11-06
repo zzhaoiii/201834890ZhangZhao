@@ -2,6 +2,7 @@
 Homework of Data Mining
 
 ## Final product description 
+# HomeWork 1：KNN
 > 1. 预处理过程：token->normalization（去特殊字符、小写、判断是否英语单词）->Stemming->Stopword
 > 2. 构造词典：去除频率4以下token。最终词典大小：18708
 > 3. 实现01型与tf-idf权重型space vector
@@ -20,6 +21,11 @@ Homework of Data Mining
  | tf-idf+计数法  |  0.733  |   40   |
  | tf-idf+权重法  |  0.742  |   40   | 
 
+# HomeWork 2：NBC
+> 1. 调用homework1的vsm.py读取数据、生成词典。并使用knn分出的train set、test set。（8 2分）
+> 2. 构造词典：过滤词频大于4000，小于8的token
+> 3. 采用多项式模型实现，并进行平滑处理。
+> 4. 测试集准确率：0.795
 ----------
 
 ### 2018-10-20 update 5：
