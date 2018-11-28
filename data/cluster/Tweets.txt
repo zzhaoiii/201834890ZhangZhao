@@ -1,4 +1,4 @@
-{"text": "brain fluid buildup delay giffords rehab", "cluster": 37}
+{"text": "brain fluid buildup delay giffords rehab", "cluster": 37} 
 {"text": "trailer talk week movie rite mechanic week opportunity", "cluster": 14}
 {"text": "rnc appoints chairman tampa convention effort visit tampa republican nati tampa fl", "cluster": 100}
 {"text": "gbagbo camp futile cut ivory coast economy", "cluster": 110}
