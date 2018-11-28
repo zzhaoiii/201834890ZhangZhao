@@ -41,6 +41,12 @@ Homework of Data Mining
  | SpectralClustering  |  0.759  |  
  | DBSCAN  |  0.733  | 
  
+ |   linkages        |  ward  |    average  |    complete  |   
+ |   :----:      | :----:  |    :----:      | :----:  | 
+ |   score    |  0.792  | 0.167  | 0.463  | 
  
+ |   cov_types        |  spherical  |    diag  |    tied  |   full |
+ |   :----:      | :----:  |    :----:      | :----:  | 
+ |   score    |  0.663  | 0.716  | 0.727  |   MemoryError |
  
 ----------
