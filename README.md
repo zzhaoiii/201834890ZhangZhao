@@ -28,3 +28,19 @@ Homework of Data Mining
 > 4. 测试集准确率：0.802
 ----------
 
+# HomeWork 3：Cluster
+> 1. 调用homework1的vsm.py生成词典。并调用knn.py生成tf-idf型vsm。
+> 2. 使用NMI(Normalized Mutual Information)评估聚类效果
+> 3. score:
+
+|   实现        |  score  |   
+ |   :----:      | :----:  | 
+ |   K-Means    |  0.771  |  
+ | AffinityPropagation    |  0.733  |   
+ | MeanShift  |  0.110  |  
+ | SpectralClustering  |  0.759  |  
+ | DBSCAN  |  0.733  | 
+ 
+ 
+ 
+----------
