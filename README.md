@@ -41,9 +41,13 @@ Homework of Data Mining
  | SpectralClustering  |  0.759  |  
  | DBSCAN  |  0.733  | 
  
+ AgglomerativeClustering :
+ 
  |   linkages        |  ward  |    average  |    complete  |   
  |   :----:      | :----:  |    :----:      | :----:  | 
  |   score    |  0.792  | 0.167  | 0.463  | 
+ 
+ GaussianMixture :
  
  |   cov_types        |  spherical  |    diag  |    tied  |   full |
  |   :----:      | :----:  |    :----:      | :----:  | :----:  | 
