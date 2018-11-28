@@ -48,7 +48,6 @@ Homework of Data Mining
  |   score    |  0.792  | 0.167  | 0.463  | 
  
  GaussianMixture :
- 
  |   cov_types        |  spherical  |    diag  |    tied  |   full |
  |   :----:      | :----:  |    :----:      | :----:  | :----:  | 
  |   score    |  0.663  | 0.716  | 0.727  |   MemoryError |
